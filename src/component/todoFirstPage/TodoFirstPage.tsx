@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { changeName } from '../../store/reducers/NameReducer'
+import { useAppDispatch } from '../../store/reducers/hoors'
+import NameReducer, { CHANGE_NAME } from '../../store/reducers/NameReducer'
 import Button from '../UI/button/Button'
 import Input from '../UI/input/Input'
 import style from './TodoFirstPage.module.css'
@@ -10,10 +10,10 @@ const TodoFirstPage: React.FC = () => {
     const [name, setName] = useState<string>('')
 
     const navigate = useNavigate();
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     function goToTodoList(): void {
-        dispatch(changeName())
+        dispatch({type: CHANGE_NAME, payload: name})
         navigate('/todoList')
     }
 

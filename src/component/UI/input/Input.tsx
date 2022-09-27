@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React from 'react'
 import style from './Input.module.css'
 
 type InputType = {
@@ -8,7 +8,7 @@ type InputType = {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const Input: FC<InputType> = ({...props}) => {
+const Input: React.FC<InputType> = ({...props}) => {
   return (
     <input {...props} className={style.input} />
   )
