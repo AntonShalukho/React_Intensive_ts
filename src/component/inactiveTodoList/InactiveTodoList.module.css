@@ -1,0 +1,19 @@
+.wrapper {
+    width: 100%;
+    min-height: calc(600px - 130px);
+    height: auto;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: beige;
+}
+
+.wrapper__inside {
+    width: 100%;
+    min-height: calc(560px - 130px);
+    height: auto;
+    box-sizing: border-box;
+    background-color: rgb(9, 9, 63);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
