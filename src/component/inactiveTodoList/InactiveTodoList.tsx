@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import Task from '../task/Task'
+// import Task from '../task/Task'
 import style from './InactiveTodoList.module.css'
 
 const InactiveTodoList: FC = () => {
