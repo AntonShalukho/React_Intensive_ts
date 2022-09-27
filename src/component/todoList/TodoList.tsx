@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { FC } from 'react'
+import { useSelector } from 'react-redux'
 import { NavLink, Outlet } from 'react-router-dom'
 import Button from '../UI/button/Button'
 import Input from '../UI/input/Input'
 import style from './TodoList.module.css'
+import { NameInitialStateInterface } from "../../store/reducers/NameReducer"
 
-export default function TodoList() {
+const TodoList: FC = () => {
+    const name = useSelector((state => state.))
 
     function setActiveLinkStyle(boolean: boolean): string {
         return boolean ? style.activeLink : style.link 
@@ -20,6 +23,7 @@ export default function TodoList() {
                 <NavLink className={({isActive}) => setActiveLinkStyle(isActive)} to='active' >Active todo list</NavLink>
                 <NavLink className={({isActive}) => setActiveLinkStyle(isActive)} to='inactive' >Inactive todo list</NavLink>
             </nav>
+            <p>{name}</p>
             <div className={style.newTaskWrapper} >
                 <Input type='text' placeholder='New task' />
                 <Button method={addTask} >Add</Button>
@@ -28,3 +32,5 @@ export default function TodoList() {
         </div>
     )
 }
+
+export default TodoList
