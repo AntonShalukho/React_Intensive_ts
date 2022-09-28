@@ -1,10 +1,10 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit"
 import NameReducer from "./reducers/NameReducer"
-import  TodoReducer  from "./reducers/TodoReducer"
+import  TodoSlice  from "./reducers/TodoReducer"
 
 const rootReducer = combineReducers({
     name: NameReducer,
-    todo: TodoReducer
+    todo: TodoSlice
 })
 
 const store = configureStore({

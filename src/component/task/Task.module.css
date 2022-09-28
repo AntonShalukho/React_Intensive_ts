@@ -24,3 +24,23 @@
     margin: 0px 10px;
     cursor: pointer;
 }
+
+.title {
+    word-break: break-all;
+    cursor: pointer;
+}
+
+.titleDisable {
+    word-break: break-all;
+    position: relative;
+    /* background-color: grey; */
+}
+.titleDisable::after {
+    content: '';
+    width: 80%;
+    height: 5px;
+    background-color: black;
+    position: absolute;
+    top: calc((100% - 50%) + 2.5px);
+    left: calc((100% - 90%))
+}

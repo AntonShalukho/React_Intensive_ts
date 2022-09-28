@@ -1,13 +1,11 @@
 import React from 'react'
 import nextId from 'react-id-generator'
-import { useSelector } from 'react-redux'
 import { NavLink, Outlet } from 'react-router-dom'
 import Button from '../UI/button/Button'
 import Input from '../UI/input/Input'
 import style from './TodoList.module.css'
-import { NameInitialStateInterface } from "../../store/reducers/NameReducer"
-import { useAppDispatch, useAppSelector } from '../../store/reducers/hoors'
-import { ADD_TASK, TodoType } from '../../store/reducers/TodoReducer'
+import { useAppDispatch, useAppSelector } from '../../store/reducers/hooks'
+import { ADD_TASK, DELETE_TASK, TodoType } from '../../store/reducers/TodoReducer'
 
 const TodoList: React.FC = () => {
     const [newTask, setNewTask] = React.useState('')
@@ -17,13 +15,17 @@ const TodoList: React.FC = () => {
     function setActiveLinkStyle(boolean: boolean): string {
         return boolean ? style.activeLink : style.link 
     }
-    function addTask() {
+    function addTask(): void {
         const newTaskObject: TodoType = {
             id: nextId('task'),
             title: newTask,
             isActive: true
         }
-        dispatch({type: ADD_TASK, payload: newTask})
+        dispatch(ADD_TASK(newTaskObject))
+        setNewTask('')
+    }
+    function deleteTask(todoItem: TodoType): void {
+        dispatch(DELETE_TASK(todoItem))
     }
 
     return (
