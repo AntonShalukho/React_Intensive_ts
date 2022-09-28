@@ -1,54 +1,53 @@
 import React, { useState } from 'react'
 import styles from './Task.module.css'
-import deleteSVG from '../UI/SVGs/delete-svgrepo-com.svg'
+import deleteSVG from '../UI/SVGs/delete2-svgrepo-com.svg'
 import editSVG from '../UI/SVGs/edit-svgrepo-com.svg'
 import ok from '../UI/SVGs/ok-svgrepo-com.svg'
 import back from '../UI/SVGs/back-svgrepo-com.svg'
 import Input from '../UI/input/Input'
 import { DELETE_TASK, EDIT_TASK, TodoType, TOGGLE_TASK } from '../../store/reducers/TodoReducer'
-import { useAppDispatch } from '../../store/reducers/hooks'
+import { useAppDispatch } from '../../store/hooks/Hooks'
+import Img from '../UI/img/Img'
 
 type TaskType = {
   todoTaskObject: TodoType
 }
 
 const Task: React.FC<TaskType> = ({todoTaskObject}) => {
-  const [state, setState] = useState<TodoType>(todoTaskObject)
+  const todo: TodoType = todoTaskObject
+  const [title, setTitle] = useState<string>(todo.title)
   const [isEdit, setIsEdit] = useState<boolean>(false)
   const dispatch = useAppDispatch();
 
   function editTask(): void {
     setIsEdit((prev) => !prev);
     if(isEdit) {
-      dispatch(EDIT_TASK(state))
+      dispatch(EDIT_TASK({id: todo.id, title}))
     }
   }
   function deleteTask(): void {
-    dispatch(DELETE_TASK(state))
+    dispatch(DELETE_TASK(todo))
   }
   function desable(): void {
-    console.log('work desable, isActive: ', state.isActive)
-    setState({...state, isActive: !state.isActive})
-    dispatch(TOGGLE_TASK(state))
-    console.log('work desable, isActive: ', state.isActive) 
+    dispatch(TOGGLE_TASK({id: todo.id, isActive: !todo.isActive}))
   }
 
   return (
-    <div className={styles.wrapper} style={!state.isActive ? {backgroundColor: 'grey'} : {}}>
+    <div className={styles.wrapper} style={!todo.isActive ? {backgroundColor: 'grey'} : {}}>
         {isEdit
           ? <Input 
-              value={state.title}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setState((prev) => ({...prev, title: e.target.value}))} 
+              value={title}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value)} 
             />
-          : <div onClick={state.isActive ? desable : (): void => {}} className={state.isActive ? styles.title : styles.titleDisable}>{state.title}</div>
+          : <div onClick={desable} className={todo.isActive ? styles.title : styles.titleDisable}>{todo.title}</div>
         }
         <div className={styles.imagesWrap}>
-          {state.isActive
-            ? <img onClick={editTask} className={styles.img} src={isEdit ? ok : editSVG} alt="edit task" />
-            : <img onClick={desable} className={styles.img} src={back} alt="return task" />
+          {todo.isActive
+            ? <Img src={isEdit ? ok : editSVG} alt="edit task" method={editTask} />
+            : <Img src={back} alt="edit task" method={desable} />
           }
           
-          <img onClick={deleteTask} className={styles.img} src={deleteSVG} alt="delete task" />
+          <Img src={deleteSVG} alt="delete task" method={deleteTask} />
         </div>
     </div>
   )

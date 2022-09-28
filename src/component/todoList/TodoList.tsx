@@ -4,12 +4,13 @@ import { NavLink, Outlet } from 'react-router-dom'
 import Button from '../UI/button/Button'
 import Input from '../UI/input/Input'
 import style from './TodoList.module.css'
-import { useAppDispatch, useAppSelector } from '../../store/reducers/hooks'
-import { ADD_TASK, DELETE_TASK, TodoType } from '../../store/reducers/TodoReducer'
+import { useAppDispatch, useAppSelector } from '../../store/hooks/Hooks'
+import { ADD_TASK, TodoType } from '../../store/reducers/TodoReducer'
 
 const TodoList: React.FC = () => {
     const [newTask, setNewTask] = React.useState('')
     const name = useAppSelector(state => state.name.name);
+    const todo = useAppSelector(state => state.todo.todoList)
     const dispatch = useAppDispatch();
 
     function setActiveLinkStyle(boolean: boolean): string {
@@ -24,18 +25,19 @@ const TodoList: React.FC = () => {
         dispatch(ADD_TASK(newTaskObject))
         setNewTask('')
     }
-    function deleteTask(todoItem: TodoType): void {
-        dispatch(DELETE_TASK(todoItem))
+    function getNumberActiveTask(): number {
+        let acc = todo.filter(el => el.isActive === true)
+        return acc.length
     }
 
     return (
         <div className={style.wrapper}>
             <nav className={style.nav}>
-                <NavLink className={({isActive}) => setActiveLinkStyle(isActive)} to='all' >All todo list</NavLink>
                 <NavLink className={({isActive}) => setActiveLinkStyle(isActive)} to='active' >Active todo list</NavLink>
                 <NavLink className={({isActive}) => setActiveLinkStyle(isActive)} to='inactive' >Inactive todo list</NavLink>
             </nav>
-            <p className={style.name}>{name}</p>
+            <h1 className={style.name}>{name}</h1>
+            <h2 className={style.counter}>{`Number of active tasks: ${getNumberActiveTask()}`}</h2>
             <div className={style.newTaskWrapper} >
                 <Input 
                     type='text' 

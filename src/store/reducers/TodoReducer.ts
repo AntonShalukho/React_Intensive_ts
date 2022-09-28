@@ -22,7 +22,7 @@ const TodoSlice = createSlice({
         ADD_TASK: function(state, action: PayloadAction<TodoType>) {
             state.todoList.push(action.payload)
         },
-        EDIT_TASK: function(state, action: PayloadAction<TodoType>) {
+        EDIT_TASK: function(state, action: PayloadAction<{id: string, title: string}>) {
             let acc = state.todoList.find((el) => el.id === action.payload.id)
             if(acc) {
                 acc.title = action.payload.title
@@ -35,7 +35,7 @@ const TodoSlice = createSlice({
                 }
             })
         },
-        TOGGLE_TASK: function(state, action: PayloadAction<TodoType>) {
+        TOGGLE_TASK: function(state, action: PayloadAction<{id: string, isActive: boolean}>) {
             let acc = state.todoList.find((el) => el.id === action.payload.id)
             if(acc) {
                 acc.isActive = action.payload.isActive
@@ -46,6 +46,10 @@ const TodoSlice = createSlice({
 
 export default TodoSlice.reducer
 export const {ADD_TASK, EDIT_TASK, DELETE_TASK, TOGGLE_TASK} = TodoSlice.actions
+
+//-------------------------------------------------------------------------------------------
+//*****   Inother version below recive type never so I change it on Slice 
+//-------------------------------------------------------------------------------------------
 
 // export const ADD_TASK = 'ADD_TASK';
 // export const EDIT_TASK = 'EDIT_TASK';
@@ -103,10 +107,18 @@ export const {ADD_TASK, EDIT_TASK, DELETE_TASK, TOGGLE_TASK} = TodoSlice.actions
 // }
 
 // export default TodoReducer
+
+//---------------------------------------------------------------------------------------
+
+//*****         I tried with createAction / createReducer too but .... only Slice ((     
+
+//----------------------------------------------------------------------------------------
+
 // export const ADD_TASK = createAction('ADD_TASK');
 // export const EDIT_TASK = createAction('EDIT_TASK');
 // export const COMPLETED_TASK = createAction('COMPLETED_TASK');
 // export const DELETE_TASK = createAction('DELETE_TASK');
+
 // const TodoReducer = createReducer(initialState, {
 //     ADD_TASK: function(state: TodoInitialStateInterface, action: PayloadAction<TodoType>) {
 //         todoList: state.todoList.push(action.payload)

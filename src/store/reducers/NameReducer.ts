@@ -21,6 +21,15 @@ const NameReducer = (state = initialState, action: PayloadAction<string>) => {
 } 
 
 export default NameReducer
+
+//-----------------------------------------------------------------------------------
+
+//****      I tried to make it using react-redux but it didn't work. 
+//****      I think the problem in version react-redux in order to I don't know what version needed to make createAction / createReducer
+//*****     But I think my example below should work on previous version
+
+
+//------------------------------------------------------------------------------------
 // interface ActionInterface  {
 //     type: string,
 //     payload: string

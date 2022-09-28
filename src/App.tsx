@@ -14,8 +14,8 @@ function App() {
       <Routes>
         <Route path='' element={<TodoFirstPage/>} />
         <Route path='todoList' element={<TodoList/>} >
-          <Route path='' element={<AllTodoList/>} />
-          <Route path='all' element={<AllTodoList/>} />
+          <Route path='' element={<ActiveTodoList/>} />
+          {/* <Route path='all' element={<AllTodoList/>} /> */}
           <Route path='active' element={<ActiveTodoList/>} />
           <Route path='inactive' element={<InactiveTodoList/>} />
         </Route>

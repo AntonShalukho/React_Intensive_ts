@@ -1,12 +1,9 @@
-import React, { FC } from 'react'
-import { useAppSelector } from '../../store/reducers/hoors'
+import React from 'react'
+import { useAppSelector } from '../../store/hooks/Hooks'
 import Task from '../task/Task'
 import style from './AllTodoList.module.css'
 
-const AllTodoList: FC = () => {
-  // const [todo, setTodo] = React.useState(() => {
-
-  // })
+const AllTodoList: React.FC = () => {
 
   const todoList = useAppSelector(state => state.todo.todoList)
 
