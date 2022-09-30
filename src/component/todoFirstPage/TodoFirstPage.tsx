@@ -14,7 +14,7 @@ const TodoFirstPage: React.FC = () => {
 
     function goToTodoList(): void {
         dispatch({type: CHANGE_NAME, payload: name})
-        navigate('/todoList')
+        navigate('/todoList/active')
     }
 
     return (

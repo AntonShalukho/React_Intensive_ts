@@ -2,7 +2,6 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import TodoFirstPage from './component/todoFirstPage/TodoFirstPage';
 import TodoList from './component/todoList/TodoList';
-import AllTodoList from './component/allTodoList/AllTodoList';
 import ActiveTodoList from './component/activeTodoList/ActiveTodoList';
 import InactiveTodoList from './component/inactiveTodoList/InactiveTodoList';
 import ErrorPage from './component/errorPage/ErrorPage';
@@ -14,7 +13,6 @@ function App() {
       <Routes>
         <Route path='' element={<TodoFirstPage/>} />
         <Route path='todoList' element={<TodoList/>} >
-          <Route path='' element={<ActiveTodoList/>} />
           <Route path='active' element={<ActiveTodoList/>} />
           <Route path='inactive' element={<InactiveTodoList/>} />
         </Route>
