@@ -1,0 +1,38 @@
+.wrapper {
+    width: 70vw;
+    min-height: 70px;
+    height: auto;
+    background-color: white;
+    box-sizing: border-box;
+    margin: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 40px;
+    display: grid;
+    grid-template-columns: 80% 19%;
+}
+
+.imagesWrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    word-break: break-all;
+    cursor: pointer;
+}
+
+.titleDisable {
+    word-break: break-all;
+    position: relative;
+}
+.titleDisable::after {
+    content: '';
+    width: 80%;
+    height: 5px;
+    background-color: black;
+    position: absolute;
+    top: calc((100% - 50%) + 2.5px);
+    left: calc((100% - 90%))
+}

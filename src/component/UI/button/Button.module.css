@@ -1,0 +1,17 @@
+.button {
+    width: auto;
+    height: 50px;
+    font-size: 24px;
+    cursor: pointer;
+    border-radius: 20px;
+    border: none;
+}
+
+.button:hover {
+    background-color: grey;
+    color: azure;
+}
+.button:active {
+    background-color: rgb(74, 74, 74);
+    color: azure;
+}
