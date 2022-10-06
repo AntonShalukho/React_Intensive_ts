@@ -5,7 +5,7 @@ const ErrorPage: React.FC = () => {
   return (
       <div className={style.wrapper}>
         <div className={style.errorText}>Sorry(( Page not found</div>
-    </div>
+      </div>
   )
 }
 
