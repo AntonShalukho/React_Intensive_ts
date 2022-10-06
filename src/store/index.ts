@@ -1,4 +1,4 @@
-import { configureStore, combineReducers } from "@reduxjs/toolkit"
+import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import NameReducer from "./reducers/NameReducer"
 import  TodoSlice  from "./reducers/TodoReducer"
 
